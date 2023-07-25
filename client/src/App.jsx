@@ -7,15 +7,22 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
+const Main = styled.div`
+  height: 100vh;
+  width:100%;
+
+`
+
+
 function App() {
 
   const[isAuth, setIsAuth] = useState('')
 
   if (!isAuth) {
     return (
-        <div>
-          <Auth setIsAuth={setIsAuth}/>
-        </div>
+      <Main>
+        <Auth setIsAuth={setIsAuth}/>
+      </Main>
   )
   }
     return (
