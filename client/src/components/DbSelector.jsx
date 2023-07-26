@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState} from 'react'
 import  styled  from 'styled-components';
@@ -51,7 +52,7 @@ const Mongo = styled(BiLogoMongodb)`
   }
 `
 
-const DbSelector = () => {
+const DbSelector = ({setIsClicked}) => {
 
   const [selected, setSelected] = useState(false)
   const [db, setDb] = useState('')
@@ -60,28 +61,28 @@ const DbSelector = () => {
   const handleSelectDatabase = (database) => {
     setSelected(true);
     setDb(database);
+    setIsClicked(false)
   };
 
-  if (!selected) {
-    return (
-      <Main>
-        <Dbs>
-          <Postgres onClick={() => handleSelectDatabase('PostgreSQL')} />
-          <Mongo onClick={() => handleSelectDatabase('Mongo DB')} />
-        </Dbs>
+  return (
+    <Main>
+      {!selected ? (
+        <>
+          <Dbs>
+            <Postgres onClick={() => handleSelectDatabase('PostgreSQL')} />
+            <Mongo onClick={() => handleSelectDatabase('Mongo DB')} />
+          </Dbs>
 
-        <div>
-          <Selector>Choose Your Database</Selector>
-        </div>
-      </Main>
-    );
-  } else {
-    return (
-      <Main>
-        <Chat db={db} />
-      </Main>
-    );
-  }
+          <div>
+            <Selector>Choose Your Database</Selector>
+          </div>
+        </>
+      ) : (
+        <Chat db={db} setSelected={setSelected} />
+      )}
+    </Main>
+  );
 };
+
 
 export default DbSelector

@@ -17,17 +17,20 @@ margin-left: auto;
   margin-right: auto;
   justify-content: center;
   height: 100%;
-  padding-left: 1rem/* 16px */;
-  padding-right: 1rem/* 16px */;
+  padding-left: 1rem
+  padding-right: 1rem
 `
 
 const TitleDIV = styled.div`
 margin-bottom: 50px;
 `
 const Title = styled.h1`
-font-size: 4rem/* 48px */;
-font-weight: 700;
-${(props) =>
+  font-size: ${({ isClicked }) => (isClicked ? '4rem' : '1rem')};
+  font-weight: 700;
+  color: ${({ isClicked }) => (isClicked ? '#f5f5f5' : 'inherit')};
+  transition: font-size 1.5s ease;
+
+  ${(props) =>
     props.isClicked &&
     `
     position: relative;
@@ -38,11 +41,12 @@ ${(props) =>
       bottom: -4px;
       width: 100%;
       height: 2px;
-      background-color: #00cfa6;
-      box-shadow: 0px 10px 12px .5px rgba(0, 0, 0,1.5);
+      background-color: #f5f5f5;
+      box-shadow: 0px 10px 12px .5px rgba(0, 0, 0, 1.5);
       animation: underlineAnimation 1.5s linear forwards;
     }
   `}
+
 
   @keyframes underlineAnimation {
     from {
@@ -65,17 +69,19 @@ const Button = styled.button`
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
 
   &.active {
-    background-color: #00cfa6;
+    background-color: #036c5f;
+    color: white;
   }
 
   &:hover {
-    background-color: #00cfa6;
+    background-color: #036c5f;
+    color: white;
     .google {
-      transform: rotate(720deg);
-      transition-duration: 0.8s;
+      transform: rotate(1082deg);
+      transition-duration: 1.2s;
     }
 
-    transition: background-color 2s ease;
+    transition: background-color 1.7s ease;
 `
 
 const GoogleIcon = styled(FcGoogle)`
@@ -83,22 +89,7 @@ const GoogleIcon = styled(FcGoogle)`
   margin-left: 8px;
 `;
 
-const Auth = ({isAuth, setIsAuth}) => {
-
-  const [isClicked, setIsClicked] = useState(false);
-
-  const signInWithGoogle = async () => {
-    try {
-      setIsClicked(true);
-      const result = await signInWithPopup(auth, provider);
-      cookies.set("auth-token", result.user.refreshToken);
-      setIsAuth(cookies.get("auth-token"))
-
-    } catch(error){
-      console.error(error);
-    }
-  }
-
+const Auth = ({ isAuth, setIsAuth, isClicked, handleSignIn }) => {
   return (
     <Main>
       <TitleDIV>
@@ -108,14 +99,14 @@ const Auth = ({isAuth, setIsAuth}) => {
       <div>
         <Button
           className={isClicked ? 'google active' : 'google'}
-          onClick={signInWithGoogle}
+          onClick={handleSignIn}
         >
           <GoogleIcon className="google" />
           Continue With Google
         </Button>
       </div>
     </Main>
-  )
-}
+  );
+};
 
 export default Auth
