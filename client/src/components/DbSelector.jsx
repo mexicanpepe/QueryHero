@@ -61,7 +61,6 @@ const DbSelector = ({setIsClicked}) => {
   const handleSelectDatabase = (database) => {
     setSelected(true);
     setDb(database);
-    setIsClicked(false)
   };
 
   return (
@@ -78,7 +77,7 @@ const DbSelector = ({setIsClicked}) => {
           </div>
         </>
       ) : (
-        <Chat db={db} setSelected={setSelected} />
+        <Chat db={db} setSelected={setSelected} setIsClicked={setIsClicked}/>
       )}
     </Main>
   );

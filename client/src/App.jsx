@@ -24,7 +24,7 @@ const Background = styled.div`
   height: 100%;
   background: ${({ clicked }) =>
     clicked
-      ? 'linear-gradient(to bottom, white, #bfbfbf, #037064, #024f46)'
+      ? 'linear-gradient(to bottom, white, #e0e0e0,#bfbfbf,#a0a0a0, #7c7c7c, #037064, #024f46)'
       : 'white'};
   opacity: ${({ clicked }) => (clicked ? 1 : 0)};
   transition: background 6s ease, opacity 2s ease;
