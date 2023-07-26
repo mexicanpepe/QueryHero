@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import styled from 'styled-components';
-import Postgres from './components/Postgres';
 import Auth from './components/Auth.jsx';
 import Cookies from 'universal-cookie';
+import DbSelector from './components/DbSelector';
 
 const cookies = new Cookies();
 
@@ -21,14 +21,14 @@ function App() {
   if (!isAuth) {
     return (
       <Main>
-        <Auth setIsAuth={setIsAuth}/>
+        <Auth  isAuth = {isAuth}setIsAuth={setIsAuth}/>
       </Main>
   )
   }
     return (
-      <div>
-        <Postgres />
-      </div>
+      <Main>
+        <DbSelector />
+      </Main>
     )
 
 }

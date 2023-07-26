@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
+import {FaRegPaperPlane} from 'react-icons/fa'
 
 const StyledButton = styled.button`
   background-color: #2196f3;
@@ -24,7 +26,7 @@ const Main = styled.div`
   flex-direction: column;
 `
 
-const Postgres = () => {
+const Chat = ({db}) => {
   const [input, setInput] = useState("");
   const [aiResponse, setAiResponse] = useState("");
 
@@ -53,14 +55,14 @@ const Postgres = () => {
 
   return (
     <Main>
-      <h1>Chat Gpt Api</h1>
+      <h1>{db}</h1>
       <form onSubmit={onSubmit}>
-        <input onChange={(event) => setInput(event.target.value)} type="text" name="question" placeholder="Ask GPT Something"></input>
-        <StyledButton>BUTTON</StyledButton>
+        <input onChange={(event) => setInput(event.target.value)} type="text" name="question" placeholder="Generate Query"></input>
+        <StyledButton><FaRegPaperPlane /></StyledButton>
       </form>
       <h1>{aiResponse}</h1>
     </Main>
   );
 }
 
-export default Postgres
+export default Chat
