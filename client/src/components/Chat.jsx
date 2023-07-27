@@ -41,7 +41,7 @@ const ChangeDB = styled.p`
   height: 100%;
   width: 100%;
   background: white;
-  opacity: .85;
+  opacity: .7;
 `
 const Postgres = styled(BiLogoPostgresql)`
   font-size: 225px;

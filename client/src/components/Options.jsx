@@ -4,6 +4,7 @@ import React , {useState} from 'react'
 import styled from 'styled-components'
 import {FaRegPaperPlane} from 'react-icons/fa'
 import {SiWindows95, SiApple, SiJavascript, SiPython} from 'react-icons/si'
+import {IoMdOptions} from 'react-icons/io'
 import SetupDisplay from './SetupDisplay'
 
 const CodeContainer = styled.div`
@@ -18,6 +19,7 @@ const CodeContainer = styled.div`
   height: 550px;
   width: 90%;
   overflow: auto;
+  box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.6);
 `;
 
 const Code = styled.code`
@@ -119,7 +121,7 @@ const Options = ({ generateQuery, start, create, aiResponse, db, onSubmit, setIn
           <Input onChange={(event) => inputChange(event)} type="text" name="question" placeholder="Generate Query" />
           <StyledButton db={db} onClick={onSubmit}><FaRegPaperPlane /></StyledButton>
         </Form>
-        <Backbtn onClick={optionsClick}>Options</Backbtn>
+        <Backbtn onClick={optionsClick}><IoMdOptions size={17}/></Backbtn>
       </>
     );
   } else if (start) {
@@ -146,14 +148,14 @@ const Options = ({ generateQuery, start, create, aiResponse, db, onSubmit, setIn
           </>
         )}
 
-        <Backbtn onClick={optionsClick}>Options</Backbtn>
+        <Backbtn onClick={optionsClick}><IoMdOptions size={17} /></Backbtn>
       </>
     );
   } else if (create) {
     return (
       <>
         create database
-        <Backbtn onClick={optionsClick}>Options</Backbtn>
+        <Backbtn onClick={optionsClick}><IoMdOptions size={17} /></Backbtn>
       </>
     );
   }
