@@ -4,35 +4,8 @@ import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import {FaRegPaperPlane} from 'react-icons/fa'
 import {BiLogoPostgresql, BiLogoMongodb} from 'react-icons/bi'
-
-
-const Form = styled.div`
-  padding: 20px;
-  border-radius: 5px;
-  /* box-shadow: 0px 25px 25px ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')}; */
-  padding-left: 50px;
-  padding-right: 50px;
-  width: 100%;
-`
-const StyledButton = styled.button`
-  background-color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')};
-  color: white;
-  padding: 6px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 1.3s ease;
-
-  &:hover {
-    background-color: #024f46;
-  }
-`;
-const Backbtn = styled.button`
-margin-bottom: 20px;
-`
+import Options from './Options';
 
 const SelectorDIV = styled.div`
   display:flex;
@@ -55,20 +28,12 @@ cursor: pointer;
     transition: background-color .5s ease;
   }
 `
-const Input = styled.input`
-  padding-left:35px;
-  padding-right:40px;
-padding-top: 6px;
-padding-bottom: 4px;
-  width: 81%;
-  margin-left: 30px;
-`
 const ChangeDB = styled.p`
   font-size: xx-small;
   cursor: pointer;
 `
 
-const Main = styled.div`
+ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,36 +41,22 @@ const Main = styled.div`
   height: 100%;
   width: 100%;
   background: white;
-  opacity: .8;
+  opacity: .7;
 `
 const Postgres = styled(BiLogoPostgresql)`
-  font-size: 120px;
+  font-size: 225px;
   color: #0064a5;
   margin-left: 25px;
   margin-right: 25px;
   cursor: pointer;
 `
 const Mongo = styled(BiLogoMongodb)`
-  font-size: 120px;
+  font-size: 225px;
   color: #4DB33D;
   margin-left: 25px;
   margin-right: 25px;
   cursor: pointer;
   `
-
-const CodeContainer = styled.div`
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items: center;
-background-color: #f7f7f7;
-padding: 10px;
-border-radius: 4px;
-font-family: 'Courier New', monospace;
-font-size: 18px;
-height:550px;
-width:90%;
-`;
 
 const DbHeader = styled.h1`
 color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')};
@@ -122,6 +73,7 @@ const Chat = ({db, setSelected, setIsClicked}) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
     console.log("Form Submitted", input);
 
     const aiResponse = await generateAnswer();
@@ -129,8 +81,8 @@ const Chat = ({db, setSelected, setIsClicked}) => {
     console.log("AI RESPONSE FRM SRVR", aiResponse);
 
     setAiResponse(aiResponse);
-    // setIsClicked(true);
   }
+
 
   const generateAnswer = async () => {
     try {
@@ -151,46 +103,58 @@ const Chat = ({db, setSelected, setIsClicked}) => {
       setGeneratequery(true);
       setCreate(false);
       setStart(false);
+
+    } else if (option === 'start') {
+      setGeneratequery(false);
+      setCreate(false);
+      setStart(true);
+
+    } else if (option === 'create') {
+      setGeneratequery(false);
+      setCreate(true);
+      setStart(false);
     }
   }
 
   const optionsClick = () => {
     setSelectOpt(false)
     setGeneratequery(false);
+    setCreate(false);
+    setStart(false);
     setAiResponse('');
+  }
+
+  const inputChange = (event) => {
+    if (db === 'PostgreSQL') {
+      if (generateQuery) {
+        setInput("Create a query for a postgreSQL DB" + " " + event.target.value)
+      }
+
+    } else if (db === 'Mongo DB') {
+        if (generateQuery) {
+          setInput("Create a query for a Mongo DB" + " " + event.target.value)
+        }
+    }
   }
 
   return (
     <Main db={db}>
       {db === 'PostgreSQL' ? <Postgres /> : <Mongo />}
-      <DbHeader db={db}>{db}</DbHeader>
 
       {!selectOpt ? (
         <SelectorDIV>
-          <SelectorBtn db={db}>Get Started</SelectorBtn>
-          <SelectorBtn db={db}>Create Database</SelectorBtn>
+          <DbHeader db={db}>{db}</DbHeader>
+          <SelectorBtn db={db} onClick={() => {selectorClick('start')}}>Get Started</SelectorBtn>
+          <SelectorBtn db={db} onClick={() => {selectorClick('create')}} >Create Database</SelectorBtn>
           <SelectorBtn db={db} onClick={() => {selectorClick('generate')}}>Generate Query</SelectorBtn>
           <ChangeDB onClick={() => {setSelected(false)}}>Change Database?</ChangeDB>
         </SelectorDIV>
 
-      ) : generateQuery ? (
-        <>
-          <CodeContainer>
-              <pre>
-               <code>{aiResponse}</code>
-              </pre>
-          </CodeContainer>
-
-          <Form db={db} onSubmit={onSubmit}>
-            <Input onChange={(event) => setInput(event.target.value)} type="text" name="question" placeholder="Generate Query" />
-            <StyledButton db={db} onClick={onSubmit}><FaRegPaperPlane /></StyledButton>
-          </Form>
-          <Backbtn onClick={optionsClick}>Options</Backbtn>
-        </>
-
-      ) : null}
-
-
+      ) : (
+         (
+          <Options generateQuery={generateQuery} start={start} create={create} aiResponse={aiResponse} db={db} onSubmit={onSubmit} setInput={setInput} optionsClick={optionsClick} inputChange={inputChange}/>
+        )
+      )}
     </Main>
   );
 }
