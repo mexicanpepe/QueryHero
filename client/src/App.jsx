@@ -35,12 +35,18 @@ const Background = styled.div`
 function App() {
   const [isAuth, setIsAuth] = useState('');
   const [isClicked, setIsClicked] = useState(false);
+  const [userName , setUserName] =useState('')
+  const [email, setEmail] = useState('')
+  const [photoUrl, setPhotoUrl] = useState('')
 
   const handleSignIn = async () => {
     setIsClicked(true);
     try {
       const result = await signInWithPopup(auth, provider);
       cookies.set('auth-token', result.user.refreshToken);
+      setUserName(result.user.displayName)
+      setEmail(result.user.email)
+      setPhotoUrl(result.user.photoUrl);
       setIsAuth(cookies.get('auth-token'));
 
     } catch (error) {
@@ -60,7 +66,7 @@ function App() {
           handleSignIn={handleSignIn}
         />
       ) : (
-        <DbSelector setIsClicked={setIsClicked}/>
+        <DbSelector setIsClicked={setIsClicked} userName={userName} email={email} photoUrl={photoUrl}/>
       )}
     </Main>
   );

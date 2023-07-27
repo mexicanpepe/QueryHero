@@ -52,7 +52,7 @@ const Mongo = styled(BiLogoMongodb)`
   }
 `
 
-const DbSelector = ({setIsClicked}) => {
+const DbSelector = ({setIsClicked, userName, email, photoUrl}) => {
 
   const [selected, setSelected] = useState(false)
   const [db, setDb] = useState('')
@@ -77,7 +77,7 @@ const DbSelector = ({setIsClicked}) => {
           </div>
         </>
       ) : (
-        <Chat db={db} setSelected={setSelected} setIsClicked={setIsClicked}/>
+        <Chat db={db} setSelected={setSelected} setIsClicked={setIsClicked} userName={userName} email={email} photoUrl={photoUrl}/>
       )}
     </Main>
   );

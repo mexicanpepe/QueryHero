@@ -63,7 +63,7 @@ color: ${({ db }) => (db === 'postgresql' ? '#0063a5be' : '#4db33dbe')};
 margin-bottom: 120px;
 `
 
-const Chat = ({db, setSelected, setIsClicked}) => {
+const Chat = ({db, setSelected, setIsClicked, userName, email, photoUrl}) => {
   const [input, setInput] = useState("");
   const [aiResponse, setAiResponse] = useState("");
   const [selectOpt, setSelectOpt] = useState(false);
@@ -87,14 +87,18 @@ const Chat = ({db, setSelected, setIsClicked}) => {
   const generateAnswer = async () => {
     try {
       const response = await axios.post("http://localhost:3005/generate", {
-        inputDescription: input
+        inputDescription: input,
+        userName: userName,
+        email: email,
+        photoUrl: photoUrl,
+        db: db,
       });
       return response.data.response.trim();
     } catch (error) {
       console.error("Error in API call:", error);
       return "";
     }
-  }
+  };
 
   const selectorClick = (option) => {
     setSelectOpt(!selectOpt);
@@ -130,7 +134,7 @@ const Chat = ({db, setSelected, setIsClicked}) => {
         setInput("Create a query for a postgreSQL DB" + " " + event.target.value)
       }
 
-    } else if (db === 'Mongo DB') {
+    } else if (db === 'mongodb') {
         if (generateQuery) {
           setInput("Create a query for a Mongo DB" + " " + event.target.value)
         }
