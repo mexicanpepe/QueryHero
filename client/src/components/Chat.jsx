@@ -20,11 +20,11 @@ width: 65%;
 margin-bottom: 20px;
 height: 55px;
 font-size: large;
-background-color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a56e' : '#4db33d65')};
+background-color: ${({ db }) => (db === 'postgresql' ? '#0063a56e' : '#4db33d65')};
 cursor: pointer;
 
   &:hover {
-    background-color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')};
+    background-color: ${({ db }) => (db === 'postgresql' ? '#0063a5be' : '#4db33dbe')};
     transition: background-color .5s ease;
   }
 `
@@ -41,7 +41,7 @@ const ChangeDB = styled.p`
   height: 100%;
   width: 100%;
   background: white;
-  opacity: .7;
+  opacity: .85;
 `
 const Postgres = styled(BiLogoPostgresql)`
   font-size: 225px;
@@ -59,8 +59,8 @@ const Mongo = styled(BiLogoMongodb)`
   `
 
 const DbHeader = styled.h1`
-color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')};
-margin-bottom: 10px;
+color: ${({ db }) => (db === 'postgresql' ? '#0063a5be' : '#4db33dbe')};
+margin-bottom: 120px;
 `
 
 const Chat = ({db, setSelected, setIsClicked}) => {
@@ -125,7 +125,7 @@ const Chat = ({db, setSelected, setIsClicked}) => {
   }
 
   const inputChange = (event) => {
-    if (db === 'PostgreSQL') {
+    if (db === 'postgresql') {
       if (generateQuery) {
         setInput("Create a query for a postgreSQL DB" + " " + event.target.value)
       }
@@ -139,13 +139,13 @@ const Chat = ({db, setSelected, setIsClicked}) => {
 
   return (
     <Main db={db}>
-      {db === 'PostgreSQL' ? <Postgres /> : <Mongo />}
+      {db === 'postgresql' ? <Postgres /> : <Mongo />}
 
       {!selectOpt ? (
         <SelectorDIV>
           <DbHeader db={db}>{db}</DbHeader>
           <SelectorBtn db={db} onClick={() => {selectorClick('start')}}>Get Started</SelectorBtn>
-          <SelectorBtn db={db} onClick={() => {selectorClick('create')}} >Create Database</SelectorBtn>
+          {/* <SelectorBtn db={db} onClick={() => {selectorClick('create')}} >Create Database</SelectorBtn> */}
           <SelectorBtn db={db} onClick={() => {selectorClick('generate')}}>Generate Query</SelectorBtn>
           <ChangeDB onClick={() => {setSelected(false)}}>Change Database?</ChangeDB>
         </SelectorDIV>

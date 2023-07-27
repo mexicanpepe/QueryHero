@@ -68,8 +68,8 @@ const DbSelector = ({setIsClicked}) => {
       {!selected ? (
         <>
           <Dbs>
-            <Postgres onClick={() => handleSelectDatabase('PostgreSQL')} />
-            <Mongo onClick={() => handleSelectDatabase('Mongo DB')} />
+            <Postgres onClick={() => handleSelectDatabase('postgresql')} />
+            <Mongo onClick={() => handleSelectDatabase('mongodb')} />
           </Dbs>
 
           <div>

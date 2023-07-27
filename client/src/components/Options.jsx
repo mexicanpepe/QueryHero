@@ -1,22 +1,27 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React , {useState} from 'react'
 import styled from 'styled-components'
 import {FaRegPaperPlane} from 'react-icons/fa'
+import {SiWindows95, SiApple, SiJavascript, SiPython} from 'react-icons/si'
+import SetupDisplay from './SetupDisplay'
 
 const CodeContainer = styled.div`
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items: center;
-background-color: #f7f7f7;
-padding: 10px;
-border-radius: 4px;
-font-family: 'Courier New', monospace;
-font-size: 18px;
-height:550px;
-width:90%;
-overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  height: 550px;
+  width: 90%;
+  overflow: auto;
+`;
+
+const Code = styled.code`
+  white-space: pre-wrap;
 `;
 
 const Form = styled.div`
@@ -28,7 +33,7 @@ const Form = styled.div`
   width: 100%;
 `
 const StyledButton = styled.button`
-  background-color: ${({ db }) => (db === 'PostgreSQL' ? '#0063a5be' : '#4db33dbe')};
+  background-color: ${({ db }) => (db === 'postgresql' ? '#0063a5be' : '#4db33dbe')};
   color: white;
   padding: 6px 20px;
   border: none;
@@ -52,38 +57,106 @@ padding-bottom: 4px;
   width: 81%;
   margin-left: 30px;
 `
+const Setup = styled.h1`
+color: ${({ db }) => (db === 'postgresql' ? '#0063a5be' : '#4db33dbe')};
+`
+const TechDiv = styled.div`
+  display: flex;
+  flex-direction:row;
 
-const Options = ({ generateQuery, start, create, aiResponse, db, onSubmit, setInput, optionsClick, inputChange}) => {
+`
+const Apple = styled(SiApple)`
+font-size: 100px;
+cursor:pointer;
+margin: 45px;
+`
+const Windows = styled(SiWindows95)`
+font-size: 100px;
+cursor:pointer;
+margin: 45px;
+`
+const Js = styled(SiJavascript)`
+font-size: 100px;
+cursor:pointer;
+margin: 45px;
+`
+const Python = styled(SiPython)`
+font-size: 100px;
+cursor:pointer;
+margin: 45px;
+`
+
+
+
+const Options = ({ generateQuery, start, create, aiResponse, db, onSubmit, setInput, optionsClick, inputChange }) => {
+  const [tech, setTech] = useState("operatingSystem");
+  const [operatingSystem, setOperatingSystem] = useState('')
+  const [language, setLanguage] = useState('')
+
+
+
+  const opSystemClick = (pick) => {
+    if (tech === "operatingSystem") {
+        setOperatingSystem(pick);
+        setTech("language");
+    } else {
+      setLanguage(pick);
+      setTech(false);
+    }
+  }
+
 
   if (generateQuery) {
     return (
       <>
-      <CodeContainer>
+        <CodeContainer>
           <pre>
-           <code>{aiResponse}</code>
+            <Code>{aiResponse}</Code>
           </pre>
-      </CodeContainer>
+        </CodeContainer>
 
-      <Form db={db} onSubmit={onSubmit}>
-        <Input onChange={(event) => inputChange(event)} type="text" name="question" placeholder="Generate Query" />
-        <StyledButton db={db} onClick={onSubmit}><FaRegPaperPlane /></StyledButton>
-      </Form>
-      <Backbtn onClick={optionsClick}>Options</Backbtn>
-    </>
-    )
+        <Form db={db} onSubmit={onSubmit}>
+          <Input onChange={(event) => inputChange(event)} type="text" name="question" placeholder="Generate Query" />
+          <StyledButton db={db} onClick={onSubmit}><FaRegPaperPlane /></StyledButton>
+        </Form>
+        <Backbtn onClick={optionsClick}>Options</Backbtn>
+      </>
+    );
   } else if (start) {
     return (
-      <>get started
-      <Backbtn onClick={optionsClick}>Options</Backbtn>
+      <>
+        <Setup db={db}>Get Started</Setup>
+        {tech ? (
+          <TechDiv>
+            {tech === "operatingSystem" ? (
+              <>
+                <Apple onClick={() => {opSystemClick("apple")}}/>
+                <Windows onClick={() => {opSystemClick("windows")}} />
+              </>
+            ) : (
+              <>
+                <Js onClick={() => {opSystemClick("js")}}/>
+                <Python onClick={() => {opSystemClick("py")}} />
+              </>
+            )}
+          </TechDiv>
+        ) : (
+          <>
+            <SetupDisplay tech={tech} operatingSystem={operatingSystem} language={language} db={db} setTech={setTech} />
+          </>
+        )}
+
+        <Backbtn onClick={optionsClick}>Options</Backbtn>
       </>
-    )
+    );
   } else if (create) {
     return (
-      <>create database
-      <Backbtn onClick={optionsClick}>Options</Backbtn>
+      <>
+        create database
+        <Backbtn onClick={optionsClick}>Options</Backbtn>
       </>
-    )
+    );
   }
-}
+};
 
 export default Options

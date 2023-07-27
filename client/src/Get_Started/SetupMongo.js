@@ -1,4 +1,4 @@
-export const macJavascriptMongo = [
+export const macJsMongo = [
   {
     title: 'Downloading MongoDB Community Edition for Mac:',
     description: 'Go to the official MongoDB website and download the Community Edition for macOS.',
@@ -32,7 +32,7 @@ export const macJavascriptMongo = [
   },
 ];
 
-export const winJavascriptMongo = [
+export const winJsMongo = [
   {
     title: 'Downloading MongoDB Community Edition for Windows:',
     description: 'Go to the official MongoDB website and download the Community Edition for Windows.',

@@ -21,7 +21,7 @@ export const macPythonPost = [
   },
 ];
 
-export const macJavascriptPost = [
+export const macJsPost = [
   {
     title: 'Downloading PostgreSQL using Homebrew:',
     description: 'Open the Terminal on your Mac and follow these steps:',
@@ -84,7 +84,7 @@ export const winPythonPost = [
   },
 ];
 
-export const winJavascriptPost = [
+export const winJsPost = [
   {
     title: 'Downloading PostgreSQL Installer for Windows:',
     description: 'Go to the official PostgreSQL website and download the Windows installer.',
