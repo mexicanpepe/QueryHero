@@ -41,7 +41,6 @@ function App() {
   const [photoUrl, setPhotoUrl] = useState('')
 
   const handleSignIn = async () => {
-    setIsClicked(true);
     try {
       const result = await signInWithPopup(auth, provider);
       cookies.set('auth-token', result.user.refreshToken);
@@ -65,6 +64,7 @@ function App() {
           setIsAuth={setIsAuth}
           isClicked={isClicked}
           handleSignIn={handleSignIn}
+          setIsClicked={setIsClicked}
         />
       ) : (
         <DbSelector setIsClicked={setIsClicked} userName={userName} email={email} photoUrl={photoUrl}/>

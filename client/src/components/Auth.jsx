@@ -98,7 +98,17 @@ const GoogleIcon = styled(FcGoogle)`
   margin-left: 8px;
 `;
 
-const Auth = ({ isAuth, setIsAuth, isClicked, handleSignIn }) => {
+const Auth = ({ isAuth, setIsAuth, isClicked, handleSignIn, setIsClicked}) => {
+
+  const waitSignIn = () => {
+  setIsClicked(true);
+
+  setTimeout(() => {
+    handleSignIn();
+}, "1500");
+}
+
+
   return (
     <Main>
       <TitleDIV>
@@ -112,7 +122,7 @@ const Auth = ({ isAuth, setIsAuth, isClicked, handleSignIn }) => {
       <div>
         <Button
           className={isClicked ? 'google active' : 'google'}
-          onClick={handleSignIn}
+          onClick={waitSignIn}
         >
           <GoogleIcon className="google" />
           Continue With Google
