@@ -6,6 +6,9 @@ import {signInWithPopup} from 'firebase/auth'
 import Cookies from 'universal-cookie';
 import  styled  from 'styled-components';
 import {FcGoogle} from 'react-icons/fc'
+import Lottie from 'lottie-react'
+import animationData from '/Users/mexicanpepe/openAI-app/client/public/animation_lknf9h8g.json'
+
 const cookies = new Cookies();
 
 const Main = styled.div`
@@ -23,11 +26,19 @@ margin-left: auto;
 
 const TitleDIV = styled.div`
 margin-bottom: 50px;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+`
+const AnimationDIV = styled.div`
+width: 250px;
+height: 250px;
 `
 const Title = styled.h1`
   font-size: ${({ isClicked }) => (isClicked ? '4rem' : '1rem')};
   font-weight: 700;
-  color: ${({ isClicked }) => (isClicked ? '#f5f5f5' : 'inherit')};
+  color: ${({ isClicked }) => (isClicked ? '#fbf6d0' : 'inherit')};
   transition: font-size 1.5s ease;
 
   ${(props) =>
@@ -65,20 +76,18 @@ const Button = styled.button`
   align-items: center;
   cursor: pointer;
   border: 1px solid #000;
-  background-color: #f6f6f6;
+  background-color: #3FEFD9;
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
 
   &.active {
-    background-color: #036c5f;
-    color: white;
+    background-color:#fbf6d0 ;
   }
 
   &:hover {
-    background-color: #036c5f;
-    color: white;
+    background-color: #f6f6f6;
     .google {
       transform: rotate(1082deg);
-      transition-duration: 1.2s;
+      transition-duration: 1.8s;
     }
 
     transition: background-color 1.7s ease;
@@ -93,6 +102,10 @@ const Auth = ({ isAuth, setIsAuth, isClicked, handleSignIn }) => {
   return (
     <Main>
       <TitleDIV>
+        <AnimationDIV>
+          <Lottie animationData={animationData} />
+        </AnimationDIV>
+
         <Title isClicked={isClicked}>Query Hero</Title>
       </TitleDIV>
 

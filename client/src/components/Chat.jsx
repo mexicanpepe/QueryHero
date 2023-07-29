@@ -12,7 +12,7 @@ const SelectorDIV = styled.div`
   flex-direction: column;
   width:100%;
   align-items: center;
-  margin-bottom: -200px;
+  margin-bottom: -185px;
 `
 
 const SelectorBtn = styled.button`
@@ -38,10 +38,10 @@ const ChangeDB = styled.p`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 93%;
   width: 100%;
-  background: white;
-  opacity: .7;
+  background: #fce8f0;
+  opacity: .95;
 `
 const Postgres = styled(BiLogoPostgresql)`
   font-size: 225px;

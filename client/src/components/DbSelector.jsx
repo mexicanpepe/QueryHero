@@ -18,15 +18,14 @@ margin-left: auto;
   padding-right: 1rem/* 16px */;
 `
 const Selector = styled.h3`
-font-size: 2rem;
-
+font-size: 3rem;
+color: #fbf6d0 ;
 `
 const Dbs = styled.div`
   display:flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 55px;
 `
 const Postgres = styled(BiLogoPostgresql)`
   font-size: 120px;
@@ -51,6 +50,9 @@ const Mongo = styled(BiLogoMongodb)`
     font-size: 225px;
   }
 `
+const ChooseDIV = styled.div`
+  margin-bottom: 70px;
+`
 
 const DbSelector = ({setIsClicked, userName, email, photoUrl}) => {
 
@@ -67,14 +69,16 @@ const DbSelector = ({setIsClicked, userName, email, photoUrl}) => {
     <Main>
       {!selected ? (
         <>
+        <ChooseDIV>
+            <Selector>Choose Your Database</Selector>
+        </ChooseDIV>
+
           <Dbs>
             <Postgres onClick={() => handleSelectDatabase('postgresql')} />
             <Mongo onClick={() => handleSelectDatabase('mongodb')} />
           </Dbs>
 
-          <div>
-            <Selector>Choose Your Database</Selector>
-          </div>
+
         </>
       ) : (
         <Chat db={db} setSelected={setSelected} setIsClicked={setIsClicked} userName={userName} email={email} photoUrl={photoUrl}/>
