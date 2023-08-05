@@ -18,5 +18,9 @@ Implemented Google Firebase for user authentication, enhancing security and user
 
 https://github.com/mexicanpepe/QueryHero/assets/104655832/f1a975be-4f83-4978-a56b-17ffb086d7e1
 
+https://github.com/mexicanpepe/QueryHero/assets/104655832/530dc7c0-3f82-4864-a1da-1ffd90898471
 
+
+
+https://github.com/mexicanpepe/QueryHero/assets/104655832/a4df94f3-57b4-439f-b53f-f299df361463
 
