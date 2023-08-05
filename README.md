@@ -13,6 +13,10 @@ An AI powered tool for software engineers and data engineers to easily create da
 <img width="800" alt="Screenshot 2023-07-30 at 1 40 31 PM" src="https://github.com/mexicanpepe/QueryHero/assets/104655832/84d947eb-36a4-4a08-aab8-287a203114d3">
 
 
-https://github.com/mexicanpepe/QueryHero/assets/104655832/c6a1229f-6a0a-437b-805f-0e5bd644e7c1
+
+https://github.com/mexicanpepe/QueryHero/assets/104655832/8a3bb780-f8d6-432b-aae8-a0a9549954df
+
+
+
 
 
