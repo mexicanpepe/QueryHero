@@ -19,7 +19,33 @@ An AI powered tool for software engineers and data engineers to easily create da
 
 https://github.com/mexicanpepe/QueryHero/assets/104655832/8a3bb780-f8d6-432b-aae8-a0a9549954df
 
-https://github.com/mexicanpepe/QueryHero/assets/104655832/f1a975be-4f83-4978-a56b-17ffb086d7e1
+https://github.com/mexicanpepe/QueryHero/assets/104655832/84061493-3deb-4b64-9d1b-50f46bfeb6ca
 
 https://github.com/mexicanpepe/QueryHero/assets/104655832/a4df94f3-57b4-439f-b53f-f299df361463
 
+
+## Future Implementations
+* Improve user experience by using the Open AI 'Text-Davinci-003' model for improved API response time.
+* Include more databases to choose from. Currently Can choose 'PostgreSQL' or 'MongoDB'.
+* Include a 'My Databases' component where use can access a history of querys created and databases created.
+
+
+## Getting Started
+1. From terminal, clone repo
+```
+git clone https://github.com/mexicanpepe/QueryHero.git
+```
+2. Install dependencies
+```
+npm install
+```
+3. Configure .env file server side to include Open AI API key
+4. Follow sql schemas in the ELT scripts in schema.sql to set up database.
+5. Start Client Front-End
+```
+npm run dev
+```
+6. Start server
+```
+npm run start
+```
