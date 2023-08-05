@@ -13,6 +13,7 @@ An AI powered tool for software engineers and data engineers to easily create da
 <img width="800" alt="Screenshot 2023-07-30 at 1 40 31 PM" src="https://github.com/mexicanpepe/QueryHero/assets/104655832/84d947eb-36a4-4a08-aab8-287a203114d3">
 
 https://github.com/mexicanpepe/QueryHero/assets/104655832/8a3bb780-f8d6-432b-aae8-a0a9549954df
+
 Implemented Google Firebase for user authentication, enhancing security and user experience. 
 
 https://github.com/mexicanpepe/QueryHero/assets/104655832/0a1ef6c6-8634-4919-b1ad-0cafcbb7e0c1
