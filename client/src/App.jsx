@@ -26,7 +26,7 @@ const Background = styled.div`
   background: ${({ clicked }) =>
     clicked
       ? 'linear-gradient(to bottom, #5B39D8, #5B39D8,#5B39D8, #FF5370, #FF5370)'
-      : 'white'};
+      : ''};
   opacity: ${({ clicked }) => (clicked ? 1 : 0)};
   transition: background 6s ease, opacity 2s ease;
   pointer-events: none;

@@ -149,7 +149,9 @@ const Chat = ({db, setSelected, setIsClicked, userName, email, photoUrl}) => {
         <SelectorDIV>
           <DbHeader db={db}>{db}</DbHeader>
           <SelectorBtn db={db} onClick={() => {selectorClick('start')}}>Get Started</SelectorBtn>
-          {/* <SelectorBtn db={db} onClick={() => {selectorClick('create')}} >Create Database</SelectorBtn> */}
+          {/* <SelectorBtn db={db} onClick={() => {selectorClick('create')}} >Data Hub</SelectorBtn>
+          <SelectorBtn db={db} onClick={() => {selectorClick('Optimize')}} >Create Database</SelectorBtn>
+          <SelectorBtn db={db} onClick={() => {selectorClick('Optimize')}} >Optimize</SelectorBtn> */}
           <SelectorBtn db={db} onClick={() => {selectorClick('generate')}}>Generate Query</SelectorBtn>
           <ChangeDB onClick={() => {setSelected(false)}}>Change Database?</ChangeDB>
         </SelectorDIV>

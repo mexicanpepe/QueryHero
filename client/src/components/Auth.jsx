@@ -32,8 +32,8 @@ justify-content:center;
 align-items:center;
 `
 const AnimationDIV = styled.div`
-width: 250px;
-height: 250px;
+width: 270px;
+height: 270px;
 `
 const Title = styled.h1`
   font-size: ${({ isClicked }) => (isClicked ? '4rem' : '1rem')};
